@@ -1,7 +1,9 @@
 package com.example.gridview
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.gridview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,13 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = CustumAdapter(context = this, imageList)
 
-        binding.gridview.adapter= adapter
+        binding.gridview.adapter = adapter
+
+        binding.gridview.setOnItemClickListener { _, _, position, _ ->
+            Intent(this, FruitInActivity::class.java).apply {
+                this.putExtra("position", position)
+                startActivity(this)
+            }
+        }
     }
 }
